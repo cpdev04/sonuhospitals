@@ -1,0 +1,20 @@
+RewriteEngine on
+
+# Remove .html extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Redirect requests for .html files directly
+RewriteCond %{THE_REQUEST} \.html [NC]
+RewriteRule ^(.+)\.html$ /$1 [NC,R=301,L]
+
+# Redirect /index to root
+RewriteRule ^index$ / [NC,R=301,L]
+
+# Redirect /index.html to root
+RewriteRule ^index\.html$ / [NC,R=301,L]
+
+#canonical code
+# RewriteCond %{HTTP_HOST} ^suprahospital.com [NC]
+# RewriteRule ^(.*)$ https://www.suprahospital.com/$1 [L,R=301]
